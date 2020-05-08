@@ -1,0 +1,5 @@
+---
+- name: Instalando Node Exporter
+  hosts: "{{ host }}"
+  roles:
+  - ansible-node-exporter

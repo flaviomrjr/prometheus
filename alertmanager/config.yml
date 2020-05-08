@@ -1,0 +1,12 @@
+global:
+  slack_api_url: 'https://hooks.slack.com/services/key/key/key'
+
+route:
+  receiver: 'slack-notifications'
+  group_by: [alertname, instance, job, severity]
+
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#prometheus'
+    text: 'Alert: {{ .GroupLabels.alertname }} | Node: {{ .GroupLabels.instance }} | Group: {{ .GroupLabels.job }} | Severity: {{ .GroupLabels.severity }}'
