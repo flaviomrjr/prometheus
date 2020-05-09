@@ -19,14 +19,14 @@ Before we get started installing the Prometheus stack. Ensure you install the la
 # Installation & Configuration
 Clone the project locally to your Docker host.
 
-If you would like to change which targets should be monitored or make configuration changes edit the [/prometheus/prometheus.yml](prometheus/prometheus.yml) file. The targets section is where you define what should be monitored by Prometheus. The names defined in this file are actually sourced from the service name in the docker-compose file. If you wish to change names of the services you can add the **container_name** parameter in the `prometheus.yml` stack file.
+If you would like to change which targets should be monitored or make configuration changes edit the [/prometheus/prometheus.yml](prometheus/prometheus.yml) file. The targets section is where you define what should be monitored by Prometheus. The names defined in this file are actually sourced from the service name in the docker-compose file. If you wish to change names of the services you can add the `container_name` parameter in the `prometheus-stack.yml` file.
 
-Once configurations are done let's start it up. From the [/prometheus](prometheus) project directory run the following command:
+Once configurations are done let's start it up. From the project directory run the following command:
 
-    $ docker stack deploy -c prometheus.yml prometheus
+    $ docker stack deploy -c prometheus-stack.yml prometheus
 
 
-That's it the **docker stack deploy** command deploys the entire Prometheus and Grafana stack automagically to the Docker Swarm. By default cAdvisor and node-exporter are set to Global deployment which means they will propogate to every docker host attached to the Swarm.
+That's it the `docker stack deploy` command deploys the entire Prometheus and Grafana stack automagically to the Docker Swarm. By default cAdvisor and node-exporter are set to Global deployment which means they will propogate to every docker host attached to the Swarm.
 
 The Grafana Dashboard is now accessible via: `http://<Host IP Address>:3000` for example http://192.168.10.1:3000
 
@@ -46,9 +46,9 @@ View logs for a specific service
     $ docker service logs prometheus_<service_name>
 
 ## Add Datasources and Dashboards
-Grafana version 5.0.0 has introduced the concept of provisioning. This allows us to automate the process of adding Datasources & Dashboards. The [/grafana/provisioning/](grafana/provisioning/) directory contains the **datasources** and **dashboards** directories. These directories contain YAML files which allow us to specify which datasource or dashboards should be installed. 
+Grafana version 5.0.0 has introduced the concept of provisioning. This allows us to automate the process of adding Datasources & Dashboards. The [/grafana/provisioning/](grafana/provisioning/) directory contains the `datasources` and `dashboards` directories. These directories contain YAML files which allow us to specify which datasource or dashboards should be installed. 
 
-If you would like to automate the installation of additional dashboards just copy the Dashboard **JSON** file to [/grafana/provisioning/dashboards/](grafana/provisioning/dashboards/) and it will be provisioned next time you stop and start Grafana.
+If you would like to automate the installation of additional dashboards just copy the Dashboard `JSON` file to [/grafana/provisioning/dashboards/](grafana/provisioning/dashboards/) and it will be provisioned next time you stop and start Grafana.
 
 ## Install Dashboards the old way
 
@@ -80,7 +80,7 @@ View Prometheus alerts `http://<Host IP Address>:9090/alerts`
 View Alert Manager `http://<Host IP Address>:9093`
 
 ## Add Additional Datasources
-The Prometheus Datasource is being provisioned automagically. The [/grafana/provisioning/datasources](grafana/provisioning/datasources) directory contains the **datasources** that will be added.
+The Prometheus Datasource is being provisioned automagically. The [/grafana/provisioning/datasources](grafana/provisioning/datasources) directory contains the `datasources` that will be added.
 
 If you need add a new Datasource in order to connect Grafana to Prometheus
 
