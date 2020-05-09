@@ -19,14 +19,14 @@ Before we get started installing the Prometheus stack. Ensure you install the la
 # Installation & Configuration
 Clone the project locally to your Docker host.
 
-If you would like to change which targets should be monitored or make configuration changes edit the [/prometheus/prometheus.yml](prometheus/prometheus.yml) file. The targets section is where you define what should be monitored by Prometheus. The names defined in this file are actually sourced from the service name in the docker-compose file. If you wish to change names of the services you can add the "container_name" parameter in the `prometheus.yml` stack file.
+If you would like to change which targets should be monitored or make configuration changes edit the [/prometheus/prometheus.yml](prometheus/prometheus.yml) file. The targets section is where you define what should be monitored by Prometheus. The names defined in this file are actually sourced from the service name in the docker-compose file. If you wish to change names of the services you can add the **container_name** parameter in the `prometheus.yml` stack file.
 
-Once configurations are done let's start it up. From the /prometheus project directory run the following command:
+Once configurations are done let's start it up. From the [/prometheus](prometheus) project directory run the following command:
 
     $ docker stack deploy -c prometheus.yml prometheus
 
 
-That's it the `docker stack deploy' command deploys the entire Prometheus and Grafana stack automagically to the Docker Swarm. By default cAdvisor and node-exporter are set to Global deployment which means they will propogate to every docker host attached to the Swarm.
+That's it the **docker stack deploy** command deploys the entire Prometheus and Grafana stack automagically to the Docker Swarm. By default cAdvisor and node-exporter are set to Global deployment which means they will propogate to every docker host attached to the Swarm.
 
 The Grafana Dashboard is now accessible via: `http://<Host IP Address>:3000` for example http://192.168.10.1:3000
 
@@ -46,9 +46,9 @@ View logs for a specific service
     $ docker service logs prometheus_<service_name>
 
 ## Add Datasources and Dashboards
-Grafana version 5.0.0 has introduced the concept of provisioning. This allows us to automate the process of adding Datasources & Dashboards. The `/grafana/provisioning/` directory contains the `datasources` and `dashboards` directories. These directories contain YAML files which allow us to specify which datasource or dashboards should be installed. 
+Grafana version 5.0.0 has introduced the concept of provisioning. This allows us to automate the process of adding Datasources & Dashboards. The [/grafana/provisioning/](grafana/provisioning/) directory contains the **datasources** and **dashboards** directories. These directories contain YAML files which allow us to specify which datasource or dashboards should be installed. 
 
-If you would like to automate the installation of additional dashboards just copy the Dashboard `JSON` file to `/grafana/provisioning/dashboards` and it will be provisioned next time you stop and start Grafana.
+If you would like to automate the installation of additional dashboards just copy the Dashboard **JSON** file to [/grafana/provisioning/dashboards/](grafana/provisioning/dashboards/) and it will be provisioned next time you stop and start Grafana.
 
 ## Install Dashboards the old way
 
@@ -63,8 +63,8 @@ Here's the Dashboard Template
 ## Alerting
 Alerting has been added to the stack with Slack integration. 1 Alert have been added and are managed
 
-Alerts              - `prometheus/alert.rules`
-Slack configuration - `alertmanager/config.yml`
+Alerts              - [/prometheus/alert.rules](prometheus/alert.rules)
+Slack configuration - [/alertmanager/config.yml](alertmanager/config.yml)
 
 The Slack configuration requires to build a custom integration.
 * Open your slack team in your browser `https://<your-slack-team>.slack.com/apps`
@@ -73,14 +73,14 @@ The Slack configuration requires to build a custom integration.
 * Click on the "incoming webhook integration" link
 * Select which channel
 * Click on Add Incoming WebHooks integration
-* Copy the Webhook URL into the `alertmanager/config.yml` URL section
+* Copy the Webhook URL into the [/alertmanager/config.yml](alertmanager/config.yml) URL section
 * Fill in Slack channel
 
 View Prometheus alerts `http://<Host IP Address>:9090/alerts`
 View Alert Manager `http://<Host IP Address>:9093`
 
 ## Add Additional Datasources
-The Prometheus Datasource is being provisioned automagically. The `/grafana/provisioning/datasources` directory contains the `datasources` that will be added.
+The Prometheus Datasource is being provisioned automagically. The [/grafana/provisioning/datasources](grafana/provisioning/datasources) directory contains the **datasources** that will be added.
 
 If you need add a new Datasource in order to connect Grafana to Prometheus
 
@@ -96,15 +96,15 @@ SMTP configs can be set in [/grafana/config.monitoring](/grafana/config.monitori
 
 The following variables must be set:
 
-VARIABLES|VALUES
-------------------------------------------------
-GF_SMTP_ENABLED      | true
-GF_SMTP_HOST         | smtp.server.com:smtp_port
-GF_SMTP_USER         | mail@domail.com
-GF_SMTP_FROM_ADDRESS | mail@domail.com
-GF_SMTP_PASSWORD     | password
-GF_SERVER_ROOT_URL   | http://url.domain.com:3000
-GF_ROOT_URL          | http://url.domain.com:3000
+| VARIABLES | VALUES |
+|-----------|--------|
+|GF_SMTP_ENABLED|true
+|GF_SMTP_HOST|smtp.server.com:smtp_port
+|GF_SMTP_USER|mail@domail.com
+|GF_SMTP_FROM_ADDRESS|mail@domail.com
+|GF_SMTP_PASSWORD|password
+|GF_SERVER_ROOT_URL|http://url.domain.com:3000
+|GF_ROOT_URL|http://url.domain.com:3000
 
 # Security Considerations
 This project is intended to be a quick-start to get up and running with Docker and Prometheus. Security has not been implemented in this project. It is the users responsability to implement Firewall/IpTables and SSL.
