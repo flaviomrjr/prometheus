@@ -1,5 +1,5 @@
 global:
-  slack_api_url: 'https://hooks.slack.com/services/key/key/key'
+  slack_api_url: '<your_slack_webhook>'
 
 route:
   receiver: 'slack-notifications'
@@ -8,5 +8,5 @@ route:
 receivers:
 - name: 'slack-notifications'
   slack_configs:
-  - channel: '#prometheus'
+  - channel: '<your_channel>'
     text: 'Alert: {{ .GroupLabels.alertname }} | Node: {{ .GroupLabels.instance }} | Group: {{ .GroupLabels.job }} | Severity: {{ .GroupLabels.severity }}'
