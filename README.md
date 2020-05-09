@@ -58,7 +58,7 @@ This dashboard is intended to help you get started with monitoring. If you have 
 
 Here's the Dashboard Template
 
-<img src="https://github.com/flaviomrjr/prometheus/blob/master/images/nodes-swarm.PNG" width="500" heighth="1100">
+![Grafana Dashboard](https://raw.githubusercontent.com/flaviomrjr/prometheus/master/images/nodes-swarm.PNG)
 
 ## Alerting
 Alerting has been added to the stack with Slack integration. 1 Alert have been added and are managed
@@ -88,7 +88,7 @@ If you need add a new Datasource in order to connect Grafana to Prometheus
 * Click `Data Sources`
 * Click the green button `Add Data Source`.
 
-<img src="https://github.com/flaviomrjr/prometheus/blob/master/images/dasource.PNG" width="400" heighth="400">
+<img src="https://raw.githubusercontent.com/flaviomrjr/prometheus/master/images/datasource.PNG" width="400" heighth="400">
 
 ## Grafana SMTP
 
@@ -96,7 +96,7 @@ SMTP configs can be set in [/grafana/config.monitoring](/grafana/config.monitori
 
 The following variables must be set:
 
-VARIABLES            | VALUES
+VARIABLES|VALUES
 ------------------------------------------------
 GF_SMTP_ENABLED      | true
 GF_SMTP_HOST         | smtp.server.com:smtp_port
