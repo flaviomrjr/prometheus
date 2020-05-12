@@ -2,6 +2,7 @@
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:16",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -16,8 +17,7 @@
   "editable": true,
   "gnetId": 8321,
   "graphTooltip": 1,
-  "id": 1,
-  "iteration": 1588948701552,
+  "iteration": 1589288224605,
   "links": [],
   "panels": [
     {
@@ -233,10 +233,12 @@
       "mappingType": 1,
       "mappingTypes": [
         {
+          "$$hashKey": "object:83",
           "name": "value to text",
           "value": 1
         },
         {
+          "$$hashKey": "object:84",
           "name": "range to text",
           "value": 2
         }
@@ -264,7 +266,8 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(rate(container_cpu_user_seconds_total{instance=~\"$node:$port\",job=~\"$job\",image!=\"\"}[5m]) * 100)",
+          "expr": "sum(rate(container_cpu_user_seconds_total{instance=~\"$node:$port\",job=~\"$job\",image!=\"\"}[5m]))",
+          "interval": "",
           "intervalFactor": 2,
           "legendFormat": "",
           "metric": "container_memory_usage_bytes",
@@ -279,6 +282,7 @@
       "valueFontSize": "80%",
       "valueMaps": [
         {
+          "$$hashKey": "object:86",
           "op": "=",
           "text": "N/A",
           "value": "null"
@@ -335,7 +339,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(container_cpu_user_seconds_total{instance=~\"$node:$port\",job=~\"$job\",image!=\"\"}[5m]) * 100",
+          "expr": "rate(container_cpu_user_seconds_total{instance=~\"$node:$port\",job=~\"$job\",image!=\"\"}[5m])",
+          "instant": false,
+          "interval": "",
           "intervalFactor": 2,
           "legendFormat": "{{name}}",
           "metric": "cpu",
@@ -365,6 +371,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:139",
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -373,6 +380,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:140",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -886,7 +894,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "docker moodle",
           "value": "docker moodle"
         },
@@ -999,5 +1006,5 @@
   "variables": {
     "list": []
   },
-  "version": 3
+  "version": 2
 }
